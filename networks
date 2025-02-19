@@ -1,0 +1,142 @@
+import random
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# [Previous term lists remain the same]
+climate_terms = [
+    "global warming", "greenhouse gases", "sea level rise", "extreme weather", 
+    "carbon emissions", "renewable energy", "deforestation", "ocean acidification",
+    "melting glaciers", "climate refugees", "drought", "biodiversity loss",
+    "carbon footprint", "fossil fuels", "climate policy", "Paris Agreement",
+    "carbon tax", "climate adaptation", "environmental justice", "clean energy",
+    "climate mitigation", "carbon sequestration", "climate modeling", "emissions trading",
+    "climate resilience", "green technology"
+]
+
+capitalism_terms = [
+    "free market", "private property", "profit motive", "supply and demand",
+    "competition", "capital accumulation", "market economy", "economic growth",
+    "privatization", "deregulation", "shareholders", "commodification",
+    "market forces", "entrepreneurship", "investment", "labor market",
+    "stock market", "corporate power", "wealth inequality", "globalization",
+    "market efficiency", "consumer culture", "financial markets", "trade liberalization",
+    "economic exploitation", "resource allocation"
+]
+
+agriculture_terms = [
+    "crop domestication", "soil erosion", "food security", "monoculture",
+    "irrigation systems", "fertilizers", "pesticides", "seed banking",
+    "land degradation", "food distribution", "agricultural waste", "crop rotation",
+    "sustainable farming", "genetic modification", "industrial farming", "food sovereignty",
+    "agricultural biodiversity", "land use", "food processing", "soil health",
+    "agricultural runoff", "farming practices", "food waste", "agricultural policy",
+    "indigenous farming", "agroecology"
+]
+
+shared_climate_capitalism = [
+    "carbon markets", "green capitalism", "environmental regulation",
+    "sustainable development", "resource scarcity", "energy markets",
+    "circular economy", "green investment", "climate finance"
+]
+
+shared_capitalism_agriculture = [
+    "agribusiness", "food commodities", "land ownership",
+    "agricultural subsidies", "food markets", "supply chains",
+    "agricultural labor", "farming economics", "food prices"
+]
+
+shared_climate_agriculture = [
+    "sustainable agriculture", "regenerative farming", "soil carbon",
+    "agricultural emissions", "climate-smart farming", "water management",
+    "drought resistance", "agricultural adaptation", "ecosystem services"
+]
+
+# Create a network graph
+G = nx.Graph()
+
+# Add nodes with partition attributes
+for term in climate_terms + shared_climate_capitalism + shared_climate_agriculture:
+    G.add_node(term, partition='climate')
+    
+for term in capitalism_terms + shared_climate_capitalism + shared_capitalism_agriculture:
+    G.add_node(term, partition='capitalism')
+    
+for term in agriculture_terms + shared_climate_agriculture + shared_capitalism_agriculture:
+    G.add_node(term, partition='agriculture')
+
+# Add edges between terms that appear in multiple partitions
+for term in shared_climate_capitalism:
+    for other_term in climate_terms + capitalism_terms:
+        if random.random() < 0.2:  # Reduced connection probability
+            G.add_edge(term, other_term)
+
+for term in shared_capitalism_agriculture:
+    for other_term in capitalism_terms + agriculture_terms:
+        if random.random() < 0.2:
+            G.add_edge(term, other_term)
+
+for term in shared_climate_agriculture:
+    for other_term in climate_terms + agriculture_terms:
+        if random.random() < 0.2:
+            G.add_edge(term, other_term)
+
+# Add additional edges within partitions to create tighter clusters
+for partition_terms in [climate_terms, capitalism_terms, agriculture_terms]:
+    for i, term1 in enumerate(partition_terms):
+        for term2 in partition_terms[i+1:]:
+            if random.random() < 0.3:  # Higher probability for intra-partition connections
+                G.add_edge(term1, term2)
+
+# Set up the visualization
+plt.figure(figsize=(15, 15))
+
+# Use a combination of spring layout and partition-based positioning
+pos = nx.spring_layout(G, k=2, iterations=100)  # Increased k for more spread
+
+# Adjust positions to cluster by partition
+partition_centers = {
+    'climate': (-1, 1),
+    'capitalism': (1, 1),
+    'agriculture': (0, -1)
+}
+
+# Move nodes towards their partition centers
+for node in G.nodes():
+    partition = G.nodes[node]['partition']
+    center = partition_centers[partition]
+    pos[node] = (
+        pos[node][0] * 0.5 + center[0] * 0.5,
+        pos[node][1] * 0.5 + center[1] * 0.5
+    )
+
+# Define colors for each partition
+colors = {
+    'climate': '#2ecc71',    # Green
+    'capitalism': '#e74c3c',  # Red
+    'agriculture': '#3498db'  # Blue
+}
+
+# Draw nodes
+for partition in ['climate', 'capitalism', 'agriculture']:
+    node_list = [node for node in G.nodes() if G.nodes[node]['partition'] == partition]
+    nx.draw_networkx_nodes(G, pos, 
+                          nodelist=node_list,
+                          node_color=colors[partition],
+                          node_size=100,
+                          alpha=0.6)
+
+# Draw edges with reduced alpha for better clarity
+nx.draw_networkx_edges(G, pos, alpha=0.15, edge_color='gray')
+
+plt.title("Interconnections between Climate Change, Capitalism, and Agricultural Revolution", 
+          pad=20, size=16)
+
+# Add a legend
+legend_elements = [plt.Line2D([0], [0], marker='o', color='w', 
+                             markerfacecolor=color, label=partition, markersize=10)
+                  for partition, color in colors.items()]
+plt.legend(handles=legend_elements, loc='upper left', fontsize=12)
+
+plt.axis('off')
+plt.tight_layout()
+plt.show()
