@@ -1,0 +1,115 @@
+import pandas as pd
+import networkx as nx
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Load CSV data from the provided file
+data = pd.read_csv('data.csv')
+
+# Filter data for specified criteria
+filtered_data = data[
+    (data['Hyperobject'] == 'tech_disr') #&
+    #(data['Role1'] == 'threat') &
+    #(data['Role2'] == 'Facilitator') &
+    #(data['Intensity'] >= 9)
+]
+
+# Define color mapping for role2 values
+role2_colors = {
+    'Driver': 'red',
+    'Contributor': 'green',
+    'Facilitator': 'blue',
+    'Connector': 'purple'
+}
+
+# Define a central node (hyperobject)
+central_node = 'tech_disr'
+
+# Create a directed graph
+G = nx.DiGraph()
+
+# Add the central node (hyperobject)
+G.add_node(central_node, type='hyperobject')
+
+# Add terms and edges based on filtered data
+for index, row in filtered_data.iterrows():
+    term = row['Term']
+    hyperobject = row['Hyperobject']
+    intensity = row['Intensity']
+    role1 = row['Role1']
+    role2 = row['Role2']
+
+    # Add term node
+    G.add_node(term, type='term', role1=role1, role2=role2)
+
+    # Add edge from hyperobject to term
+    G.add_edge(hyperobject, term,
+               intensity=intensity,
+               style='dashed' if role1 == 'threat' else 'solid',
+               role2=role2)
+
+# Node colors based on type and hyperobject value
+color_map = {}
+for node, attributes in G.nodes(data=True):
+    if attributes.get('type') == 'hyperobject':
+        color_map[node] = 'red'  # Color for tech_disr hyperobject
+    elif attributes.get('type') == 'term':
+        color_map[node] = 'lightgray'  # Color for terms
+
+# Edge colors based on role2 values
+edge_colors = []
+edge_styles = []
+
+for u, v, data in G.edges(data=True):
+    role2 = data['role2']
+    edge_colors.append(role2_colors.get(role2, 'gray'))  # Default to gray if role2 not found
+    edge_styles.append(data['style']) # Append the edge style
+
+# Layout the graph
+pos = {}
+pos[central_node] = (0, 0)  # Place hyperobject in the center
+
+# Calculate positions of terms in a circle
+num_terms = len(G.nodes()) - 1  # Exclude the hyperobject node
+if num_terms > 0:
+    angle_increment = 2 * np.pi / num_terms
+else:
+    angle_increment = 0
+
+radius = 5  # Adjust the radius for better spacing
+
+for i, node in enumerate(G.nodes()):
+    if node != central_node:
+        angle = i * angle_increment
+        x = radius * np.cos(angle)
+        y = radius * np.sin(angle)
+        pos[node] = (x, y)
+
+
+# Draw the graph
+plt.figure(figsize=(12, 12))  # Adjust figure size for better readability
+
+# Draw nodes
+nx.draw_networkx_nodes(G, pos,
+                       nodelist=[node for node, attr in G.nodes(data=True) if attr.get('type') == 'hyperobject'],
+                       node_color=[color_map[node] for node in [node for node, attr in G.nodes(data=True) if attr.get('type') == 'hyperobject']],
+                       node_size=300)
+
+nx.draw_networkx_nodes(G, pos,
+                       nodelist=[node for node, attr in G.nodes(data=True) if attr.get('type') == 'term'],
+                       node_color=[color_map[node] for node in [node for node, attr in G.nodes(data=True) if attr.get('type') == 'term']],
+                       node_size=100)
+
+# Draw labels (adjust font size as needed)
+term_labels = {node: node for node, attr in G.nodes(data=True) if attr.get('type') == 'term'}
+nx.draw_networkx_labels(G, pos, labels=term_labels, font_size=8)
+
+# Draw edges with colors based on role2 values and styles
+nx.draw_networkx_edges(G, pos,
+                         edge_color=edge_colors,
+                         style=edge_styles)
+
+plt.title("Network Chart - tech_disr, Threat, Facilitator, Intensity >= 9")
+plt.axis('off')
+plt.tight_layout()  # Adjust layout to prevent labels from overlapping
+plt.show()
