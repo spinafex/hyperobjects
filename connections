@@ -1,0 +1,90 @@
+import pandas as pd
+import networkx as nx
+import matplotlib.pyplot as plt
+import numpy as np
+
+def create_network_chart(csv_file):
+    """
+    Creates a network chart from a CSV file, with edge length representing 'cons'.
+
+    Args:
+        csv_file (str): Path to the CSV file.
+    """
+
+    try:
+        df = pd.read_csv(csv_file)
+    except FileNotFoundError:
+        print(f"Error: File not found: {csv_file}")
+        return
+    except Exception as e:
+        print(f"Error: Could not read CSV file: {e}")
+        return
+
+    # Create the graph
+    G = nx.Graph()
+
+    # Add nodes and edges from the DataFrame
+    for index, row in df.iterrows():
+        hyp1 = row['hyp1']
+        hyp2 = row['hyp2']
+        cons = row['cons']
+        type1 = row['type']
+
+        # Add nodes with type as attribute
+        G.add_node(hyp1, type=type1)
+        G.add_node(hyp2, type=type1)
+
+        # Determine edge type for coloring
+        edge_type = f"{type1}_{type1}" #The two hyperobjects can only be of the same type
+
+        # Add edge with attributes (weight and type)
+        G.add_edge(hyp1, hyp2, weight=cons, type=edge_type)
+
+    # Node colors based on 'type' (partition)
+    node_color_map = {
+        'threat_threat': 'red',
+        'oppor_oppor': 'green',
+    }  # Add colors as needed.  Make sure the keys match what's in your 'type' column
+
+    node_colors = [node_color_map.get(G.nodes[node]['type'], 'gray') for node in G.nodes()] # Default to gray if type not found
+
+    # Edge colors based on edge 'type'
+    edge_color_map = {
+        'threat_threat': 'red',
+        'oppor_oppor': 'green',
+    }
+
+    edge_colors = [edge_color_map.get(G[u][v]['type'], 'blue') for u, v in G.edges()] #Default to blue if type not found
+
+
+    # Layout the graph using a spring layout, adjusting the 'k' parameter
+    # 'k' influences the ideal distance between nodes.  Smaller 'k' = shorter edges.
+    # We'll make 'k' depend on the 'cons' value, so higher 'cons' = shorter edge
+
+    # Extract cons values to create 'k'
+    k_values = {}
+    for u, v, data in G.edges(data=True):
+        k_values[(u, v)] = 1 / (data['weight'] + 0.1)  # Add a small value to avoid division by zero
+
+    # Create positions using the spring layout, iterating to convergence
+    pos = nx.spring_layout(G, k=0.5, iterations=50)
+
+    # Draw the graph
+    plt.figure(figsize=(12, 12))
+    nx.draw(G, pos,
+            with_labels=True,
+            node_color=node_colors,
+            edge_color=edge_colors,
+            width=1,  # Keep edge width constant
+            node_size=500, #Adjust as needed
+            font_size=8,
+            font_color='black')
+
+    plt.title("Network Chart")
+    plt.show()
+
+
+# Example usage
+if __name__ == "__main__":
+    csv_file = "conn.csv"  # Replace with the name of your CSV file
+    create_network_chart(csv_file)
