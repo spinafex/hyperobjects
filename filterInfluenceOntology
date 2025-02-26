@@ -1,0 +1,48 @@
+import pandas as pd
+import numpy as np
+from sentence_transformers import SentenceTransformer
+from scipy.spatial.distance import cdist
+
+# Load term list
+df = pd.read_csv("terms.csv", header=None)
+terms = df[0].tolist()
+
+# Define influence-based relationships
+influence_types = ["contributes", "directs", "facilitates", "incentivizes", "influences", "regulates"]
+
+# Load pre-trained NLP model for embeddings
+model = SentenceTransformer('all-MiniLM-L6-v2')
+
+# Encode all terms and influence types
+term_embeddings = model.encode(terms, convert_to_tensor=False)
+influence_embeddings = model.encode(influence_types, convert_to_tensor=False)
+
+# Compute pairwise cosine similarity between all terms
+cosine_similarities = 1 - cdist(term_embeddings, term_embeddings, metric="cosine")
+
+# Define intensity threshold
+THRESHOLD = 0.85
+
+# Find strong relationships
+relations = []
+num_terms = len(terms)
+
+for i in range(num_terms):
+    for j in range(i + 1, num_terms):  # Avoid redundant pairs
+        intensity = round(cosine_similarities[i, j], 3)
+        if intensity >= THRESHOLD:  # Keep only strong relationships
+            # Find the best influence type based on similarity
+            term_pair_embedding = model.encode([terms[i] + " " + terms[j]], convert_to_tensor=False)
+            influence_similarities = cdist(term_pair_embedding, influence_embeddings, metric="cosine")
+            best_match_idx = np.argmin(influence_similarities)
+            best_relation = influence_types[best_match_idx]
+
+            # Store the relationship
+            relations.append((terms[i], best_relation, terms[j], intensity))
+
+# Save output for Neo4j or graph visualization
+ontology_df = pd.DataFrame(relations, columns=["Source", "Relation", "Target", "Intensity"])
+ontology_df.to_csv("filtered_influence_ontology.csv", index=False)
+
+# Print a sample
+print(ontology_df.head())
