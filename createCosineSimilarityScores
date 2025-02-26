@@ -1,0 +1,40 @@
+import pandas as pd
+import torch
+from sentence_transformers import SentenceTransformer
+from itertools import combinations
+from google.colab import files
+
+# Step 1: Upload CSV file manually in Google Colab
+uploaded = files.upload()
+
+# Step 2: Load terms from the uploaded CSV file
+filename = list(uploaded.keys())[0]  # Get uploaded filename
+df = pd.read_csv(filename, header=None)  # Assuming no header
+terms = df[0].tolist()  # Extract terms
+
+# Step 3: Load Sentence-BERT model
+model = SentenceTransformer('all-MiniLM-L6-v2')  # Efficient model
+
+# Step 4: Generate embeddings for each term
+embeddings = model.encode(terms, convert_to_tensor=True)
+
+# Step 5: Compute cosine similarity between each pair
+cosine_similarities = {}
+for term1, term2 in combinations(range(len(terms)), 2):
+    similarity = torch.nn.functional.cosine_similarity(embeddings[term1].unsqueeze(0), 
+                                                       embeddings[term2].unsqueeze(0))
+    cosine_similarities[(terms[term1], terms[term2])] = similarity.item()
+
+# Step 6: Display results
+print("Cosine Similarity Scores:")
+for (term1, term2), score in cosine_similarities.items():
+    print(f"{term1} ↔ {term2}: {score:.4f}")
+
+# Step 7: Save results as CSV
+output_df = pd.DataFrame([(t1, t2, score) for (t1, t2), score in cosine_similarities.items()], 
+                         columns=["Term 1", "Term 2", "Cosine Similarity"])
+output_filename = "cosine_similarity_results.csv"
+output_df.to_csv(output_filename, index=False)
+
+# Step 8: Provide download link for results
+files.download(output_filename)
