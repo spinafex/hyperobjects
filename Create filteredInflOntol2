@@ -1,0 +1,83 @@
+import pandas as pd
+import networkx as nx
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Load the filtered influence ontology
+df = pd.read_csv("filtered_influence_ontology.csv")
+
+# Create a directed graph
+G = nx.DiGraph()
+
+# Add edges with attributes
+for _, row in df.iterrows():
+    source, relation, target, intensity = row["Source"], row["Relation"], row["Target"], row["Intensity"]
+    G.add_edge(source, target, label=relation, weight=intensity)
+
+# Compute degree (number of relationships per node)
+degree_dict = dict(G.degree())
+
+# Compute average intensity per node
+intensity_sum = {node: 0 for node in G.nodes()}
+intensity_count = {node: 0 for node in G.nodes()}
+
+for _, row in df.iterrows():
+    intensity_sum[row["Source"]] += row["Intensity"]
+    intensity_sum[row["Target"]] += row["Intensity"]
+    intensity_count[row["Source"]] += 1
+    intensity_count[row["Target"]] += 1
+
+average_intensity = {node: (intensity_sum[node] / intensity_count[node]) if intensity_count[node] > 0 else 0 for node in G.nodes()}
+
+# Compute 90th percentile thresholds
+degree_threshold = np.percentile(list(degree_dict.values()), 80)
+intensity_threshold = np.percentile(list(average_intensity.values()), 80)
+
+# User selection: filter by degree, intensity, or both
+FILTER_BY = "both"  # Options: "degree", "intensity", "both"
+
+if FILTER_BY == "degree":
+    top_nodes = {node for node, deg in degree_dict.items() if deg >= degree_threshold}
+elif FILTER_BY == "intensity":
+    top_nodes = {node for node, avg_int in average_intensity.items() if avg_int >= intensity_threshold}
+elif FILTER_BY == "both":
+    top_nodes = {node for node in G.nodes() if degree_dict.get(node, 0) >= degree_threshold and average_intensity.get(node, 0) >= intensity_threshold}
+
+# Filter edges to include only relationships among selected nodes
+H = G.subgraph(top_nodes).copy()
+
+# Define node size based on connectivity
+node_sizes = [H.degree(node) * 300 for node in H.nodes()]  # Scale for visibility
+
+# Define edge attributes
+edges = H.edges(data=True)
+edge_weights = [data['weight'] for _, _, data in edges]
+
+# Normalize weights for visualization
+if len(edge_weights) > 1:  # Ensure at least two values for normalization
+    min_weight, max_weight = min(edge_weights), max(edge_weights)
+    edge_widths = [1 + 5 * ((w - min_weight) / (max_weight - min_weight)) for w in edge_weights]  # Scale thickness
+elif len(edge_weights) == 1:  # If only one edge exists, set a default width
+    edge_widths = [3]
+else:
+    edge_widths = []  # No edges
+
+# Define layout
+pos = nx.spring_layout(H, seed=42, k=0.3)  # k controls node spacing
+
+# Draw graph
+plt.figure(figsize=(10, 8))
+
+# Draw only if graph is not empty
+if len(H.nodes()) > 0:
+    nx.draw(H, pos, with_labels=True, node_size=node_sizes, font_size=10, edge_color=edge_weights, edge_cmap=plt.cm.Blues, width=edge_widths, alpha=0.75)
+
+    # Draw edge labels (influence types)
+    edge_labels = {(u, v): d["label"] for u, v, d in edges}
+    nx.draw_networkx_edge_labels(H, pos, edge_labels=edge_labels, font_size=9)
+
+    plt.title("Top Decile Influence Relationship Graph")
+else:
+    plt.title("No nodes meet the top decile criteria.")
+
+plt.show()
