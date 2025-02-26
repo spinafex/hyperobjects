@@ -1,0 +1,57 @@
+import nltk
+nltk.download('wordnet')
+nltk.download('omw-1.4')  # Optional: Improves WordNet support for multiple languages
+
+import pandas as pd
+import networkx as nx
+from nltk.corpus import wordnet as wn
+from sentence_transformers import SentenceTransformer
+from scipy.cluster.hierarchy import linkage, fcluster
+from scipy.spatial.distance import pdist
+
+# Step 1: Load the term list
+df = pd.read_csv("terms.csv", header=None)
+terms = df[0].tolist()
+
+# Step 2: Generate embeddings for semantic clustering
+model = SentenceTransformer('all-MiniLM-L6-v2')
+embeddings = model.encode(terms, convert_to_tensor=False)
+
+# Step 3: Compute cosine distances and hierarchical clustering
+cosine_distances = pdist(embeddings, metric="cosine")
+linkage_matrix = linkage(cosine_distances, method="ward")  # Ward clustering
+cluster_labels = fcluster(linkage_matrix, t=3, criterion="maxclust")  # 3 clusters
+
+# Step 4: Create an ontological relationship dictionary
+ontological_relationships = []
+
+# Find hypernyms & hyponyms from WordNet
+for term in terms:
+    synsets = wn.synsets(term)
+    if synsets:
+        hypernym = synsets[0].hypernyms()
+        hyponym = synsets[0].hyponyms()
+        if hypernym:
+            ontological_relationships.append((term, "is_a", hypernym[0].lemmas()[0].name()))
+        if hyponym:
+            for hypo in hyponym:
+                ontological_relationships.append((hypo.lemmas()[0].name(), "is_a", term))
+
+# Step 5: Add cluster-based hierarchical relationships
+cluster_dict = {i: [] for i in set(cluster_labels)}
+for term, cluster in zip(terms, cluster_labels):
+    cluster_dict[cluster].append(term)
+
+# Infer hierarchy based on cluster centrality
+for cluster_terms in cluster_dict.values():
+    if len(cluster_terms) > 1:
+        parent = cluster_terms[0]  # Assign first term as the broad category
+        for term in cluster_terms[1:]:
+            ontological_relationships.append((term, "is_a", parent))
+
+# Step 6: Save results as CSV
+ontology_df = pd.DataFrame(ontological_relationships, columns=["Term", "Relation", "Parent"])
+ontology_df.to_csv("ontological_relationships.csv", index=False)
+
+# Step 7: Print sample results
+print(ontology_df.head(10))
