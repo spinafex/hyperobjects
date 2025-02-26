@@ -1,0 +1,79 @@
+!pip install files
+
+import pandas as pd
+import torch
+from sentence_transformers import SentenceTransformer
+from scipy.cluster.hierarchy import linkage, fcluster
+from scipy.spatial.distance import pdist
+import numpy as np
+from google.colab import files
+
+# Step 1: Upload CSV file manually in Google Colab
+uploaded = files.upload()
+
+# Step 2: Load terms from the uploaded CSV file
+filename = list(uploaded.keys())[0]
+df = pd.read_csv(filename, header=None)
+terms = df[0].tolist()
+
+# Step 3: Load Sentence-BERT model
+model = SentenceTransformer('all-MiniLM-L6-v2')
+
+# Step 4: Generate embeddings for each term
+embeddings = model.encode(terms, convert_to_tensor=False)
+
+# Step 5: Compute cosine distance matrix (1 - cosine similarity)
+cosine_distances = pdist(embeddings, metric="cosine")
+
+# Step 6: Perform hierarchical clustering
+linkage_matrix = linkage(cosine_distances, method="average")
+
+# Define threshold for stopping (adjust as needed)
+SIMILARITY_THRESHOLD = 0.75  # Stop clustering when similarity is below this
+MAX_CLUSTERS = None  # Set a number if you want a fixed limit
+
+# Step 7: Assign clusters using threshold
+num_clusters = fcluster(linkage_matrix, t=SIMILARITY_THRESHOLD, criterion="distance")
+clusters = {i: [] for i in set(num_clusters)}
+
+# Group terms into clusters
+for term, cluster_id in zip(terms, num_clusters):
+    clusters[cluster_id].append(term)
+
+# Step 8: Recursive clustering function
+def recursive_clustering(cluster_terms, depth=0, max_depth=3):
+    if len(cluster_terms) < 2 or depth >= max_depth:
+        return [cluster_terms]  # Stop recursion if cluster is small or max depth reached
+    
+    # Recompute embeddings for sub-cluster
+    sub_embeddings = model.encode(cluster_terms, convert_to_tensor=False)
+    
+    # Compute cosine distances
+    sub_distances = pdist(sub_embeddings, metric="cosine")
+    
+    # Perform clustering
+    sub_linkage = linkage(sub_distances, method="average")
+    
+    # Assign clusters
+    sub_num_clusters = fcluster(sub_linkage, t=SIMILARITY_THRESHOLD, criterion="distance")
+    sub_clusters = {i: [] for i in set(sub_num_clusters)}
+    
+    for term, cluster_id in zip(cluster_terms, sub_num_clusters):
+        sub_clusters[cluster_id].append(term)
+
+    # Recursively process each subcluster
+    final_clusters = []
+    for subcluster in sub_clusters.values():
+        final_clusters.extend(recursive_clustering(subcluster, depth + 1, max_depth))
+    
+    return final_clusters
+
+# Step 9: Apply recursive clustering to each group
+final_clusters = []
+for cluster in clusters.values():
+    final_clusters.extend(recursive_clustering(cluster))
+
+# Step 10: Output results
+print("\nFinal Recursive Clusters:")
+for i, cluster in enumerate(final_clusters, 1):
+    print(f"Cluster {i}: {', '.join(cluster)}")
