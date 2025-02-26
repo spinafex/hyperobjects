@@ -1,0 +1,55 @@
+import pandas as pd
+import networkx as nx
+import matplotlib.pyplot as plt
+from google.colab import files
+
+# Step 1: Upload the CSV file manually in Google Colab
+#uploaded = files.upload()
+
+# Step 2: Load the cosine similarity results
+#filename = list(uploaded.keys())[0]  # Get uploaded filename
+filename = "cosine_similarity_results.csv"  # Replace with the actual filename
+df = pd.read_csv(filename)
+
+# Step 3: Define the similarity threshold and number of top nodes
+SIMILARITY_THRESHOLD = 0.75  # Adjust as needed
+TOP_N_NODES = 20  # Show only the top N most connected nodes
+
+# Step 4: Filter term pairs based on threshold
+filtered_df = df[df["Cosine Similarity"] >= SIMILARITY_THRESHOLD]
+
+# Step 5: Create a graph
+G = nx.Graph()
+
+# Add nodes and edges
+for _, row in filtered_df.iterrows():
+    term1, term2, similarity = row["Term 1"], row["Term 2"], row["Cosine Similarity"]
+    G.add_edge(term1, term2, weight=similarity)
+
+# Step 6: Identify the top N most connected nodes
+degree_dict = dict(G.degree())  # Get node connection counts
+top_nodes = sorted(degree_dict, key=degree_dict.get, reverse=True)[:TOP_N_NODES]  # Select top N
+
+# Step 7: Create a subgraph with only the top nodes and their connections
+subG = G.subgraph(top_nodes)
+
+# Step 8: Draw the filtered graph
+plt.figure(figsize=(50, 20))
+pos = nx.spring_layout(subG, seed=42)  # Set layout
+edges = subG.edges(data=True)
+
+# Draw nodes (color by degree)
+node_sizes = [degree_dict[node] * 200 for node in subG.nodes()]
+nx.draw_networkx_nodes(subG, pos, node_size=node_sizes, node_color="lightblue")
+
+# Draw edges with varying thickness based on similarity
+nx.draw_networkx_edges(subG, pos, edgelist=edges, 
+                       width=[d['weight'] * 5 for (_, _, d) in edges], alpha=0.6)
+
+# Draw labels
+nx.draw_networkx_labels(subG, pos, font_size=10, font_weight="bold")
+
+# Show plot
+plt.title(f"Top {TOP_N_NODES} Most Connected Terms (Threshold: {SIMILARITY_THRESHOLD})")
+plt.show()
+
