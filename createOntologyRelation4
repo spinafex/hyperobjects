@@ -1,0 +1,67 @@
+import pandas as pd
+import spacy
+import numpy as np
+from sentence_transformers import SentenceTransformer
+from scipy.spatial.distance import cdist
+from scipy.cluster.hierarchy import linkage, fcluster
+
+# Load SpaCy model for dependency parsing
+nlp = spacy.load("en_core_web_sm")
+
+# Load term list
+df = pd.read_csv("terms.csv", header=None)
+terms = df[0].tolist()
+
+# Define influence-based relationships
+influence_types = ["contributes", "directs", "facilitates", "incentivizes", "influences", "regulates"]
+
+# Step 1: Extract direct influence-based relationships using SpaCy
+relations = []
+for term in terms:
+    doc = nlp(term)
+    for token in doc:
+        if token.dep_ in ["ROOT", "acl", "xcomp"] and token.lemma_ in influence_types:
+            subject = [child.text for child in token.children if child.dep_ == "nsubj"]
+            object_ = [child.text for child in token.children if child.dep_ == "dobj"]
+            if subject and object_:
+                relations.append((subject[0], token.lemma_, object_[0], 1.0))  # Direct relationships have full intensity
+
+# Step 2: Generate Term Embeddings for Influence Relationship Matching
+model = SentenceTransformer('all-MiniLM-L6-v2')
+
+# Encode terms and influence types
+term_embeddings = model.encode(terms, convert_to_tensor=False)
+influence_embeddings = model.encode(influence_types, convert_to_tensor=False)
+
+# Step 3: Clustering to Identify Implicit Influence Relationships
+cosine_distances = cdist(term_embeddings, term_embeddings, metric="cosine")
+linkage_matrix = linkage(cosine_distances, method="ward")
+cluster_labels = fcluster(linkage_matrix, t=4, criterion="maxclust")
+
+# Step 4: Assign Best Influence Relationship Based on Similarity
+cluster_dict = {}
+for term, cluster in zip(terms, cluster_labels):
+    cluster_dict.setdefault(cluster, []).append(term)
+
+for cluster_terms in cluster_dict.values():
+    if len(cluster_terms) > 1:
+        parent = cluster_terms[0]
+        for term in cluster_terms[1:]:
+            # Compute similarity of term to influence types
+            term_vector = model.encode([term], convert_to_tensor=False)
+            similarities = cdist(term_vector, influence_embeddings, metric="cosine")
+            
+            best_match_idx = np.argmin(similarities)  # Get closest influence type
+            best_relation = influence_types[best_match_idx]
+            
+            # Convert cosine distance to similarity score (higher = stronger relation)
+            intensity = 1 - similarities[0][best_match_idx]  # Convert distance to similarity
+
+            relations.append((term, best_relation, parent, round(intensity, 3)))
+
+# Step 5: Save Output for Neo4j
+ontology_df = pd.DataFrame(relations, columns=["Source", "Relation", "Target", "Intensity"])
+ontology_df.to_csv("influence_ontology.csv", index=False)
+
+# Print a sample
+print(ontology_df.head())
