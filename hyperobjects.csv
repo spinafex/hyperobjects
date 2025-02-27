@@ -1,0 +1,685 @@
+Term,Position,Role,Intensity,Hyperobject
+Job Displacement ,Threat,Driver,9,tech_disrup
+Algorithmic Bias ,Threat,Contributor,8,tech_disrup
+Data Breaches ,Threat,Driver,10,tech_disrup
+Privacy Erosion ,Threat,Driver,10,tech_disrup
+Surveillance State ,Threat,Facilitator,9,tech_disrup
+Misinformation Spread ,Threat,Facilitator,8,tech_disrup
+Cyber Warfare ,Threat,Contributor,7,tech_disrup
+Digital Divide ,Threat,Contributor,8,tech_disrup
+Skill Gaps ,Threat,Driver,8,tech_disrup
+Deepfakes ,Threat,Driver,9,tech_disrup
+Autonomous Weapons ,Threat,Driver,9,tech_disrup
+Loss of Control ,Threat,Contributor,7,tech_disrup
+Mental Health Impacts ,Threat,Contributor,6,tech_disrup
+Data Manipulation ,Threat,Driver,8,tech_disrup
+Economic Inequality ,Threat,Facilitator,7,tech_disrup
+Social Isolation ,Threat,Contributor,5,tech_disrup
+Identity Theft ,Threat,Driver,9,tech_disrup
+Censorship ,Threat,Facilitator,6,tech_disrup
+Filter Bubbles ,Threat,Driver,7,tech_disrup
+Echo Chambers ,Threat,Driver,7,tech_disrup
+Online Harassment ,Threat,Facilitator,8,tech_disrup
+Diminished Critical Thinking ,Threat,Contributor,6,tech_disrup
+Increased Polarization ,Threat,Facilitator,7,tech_disrup
+Disinformation Campaigns ,Threat,Driver,8,tech_disrup
+Digital Addiction ,Threat,Contributor,7,tech_disrup
+Reduced Human Interaction ,Threat,Contributor,6,tech_disrup
+Biometric Surveillance ,Threat,Driver,9,tech_disrup
+Loss of Autonomy ,Threat,Contributor,7,tech_disrup
+Automation Bias ,Threat,Driver,8,tech_disrup
+Vendor Lock-in ,Threat,Driver,6,tech_disrup
+Technical Debt ,Threat,Driver,7,tech_disrup
+Cloud Vulnerabilities ,Threat,Driver,8,tech_disrup
+Infrastructure Dependence ,Threat,Contributor,7,tech_disrup
+AI Safety Risks ,Threat,Driver,9,tech_disrup
+Unintended Consequences of AI ,Threat,Driver,8,tech_disrup
+Black Box Algorithms ,Threat,Driver,8,tech_disrup
+Loss of Traditional Skills ,Threat,Contributor,6,tech_disrup
+Copyright Infringement ,Threat,Facilitator,7,tech_disrup
+Intellectual Property Theft ,Threat,Facilitator,8,tech_disrup
+Dependence on Foreign Technology ,Threat,Contributor,7,tech_disrup
+Data Siloing ,Threat,Driver,6,tech_disrup
+Lack of Data Interoperability ,Threat,Driver,7,tech_disrup
+Ethical Dilemmas ,Threat,Driver,8,tech_disrup
+Bias in Training Data ,Threat,Contributor,8,tech_disrup
+Data Colonialism ,Threat,Facilitator,7,tech_disrup
+Power Concentration ,Threat,Driver,8,tech_disrup
+Limited Accountability ,Threat,Driver,7,tech_disrup
+Regulatory Lag ,Threat,Driver,8,tech_disrup
+Data Overload ,Threat,Contributor,7,tech_disrup
+Inadequate Data Security ,Threat,Driver,9,tech_disrup
+Shadow IT ,Threat,Driver,6,tech_disrup
+Lack of Transparency ,Threat,Driver,8,tech_disrup
+Dependence on Algorithms ,Threat,Driver,7,tech_disrup
+Increased Complexity ,Threat,Driver,8,tech_disrup
+Systemic Risk ,Threat,Facilitator,7,tech_disrup
+Vulnerability to Cyberattacks ,Threat,Driver,9,tech_disrup
+Quantum Computing Threats ,Threat,Driver,7,tech_disrup
+Degradation of Human Capital ,Threat,Contributor,6,tech_disrup
+Hacking of Critical Infrastructure ,Threat,Driver,9,tech_disrup
+Disruption of Social Cohesion ,Threat,Contributor,7,tech_disrup
+Erosion of Democratic Institutions ,Threat,Facilitator,7,tech_disrup
+Spread of Propaganda ,Threat,Facilitator,8,tech_disrup
+Influence Operations ,Threat,Facilitator,8,tech_disrup
+Online Radicalization ,Threat,Facilitator,7,tech_disrup
+Diminished Trust in Institutions ,Threat,Contributor,6,tech_disrup
+Breakdown of Social Norms ,Threat,Contributor,5,tech_disrup
+Increased Social Control ,Threat,Facilitator,8,tech_disrup
+Loss of Individuality ,Threat,Contributor,6,tech_disrup
+Commodification of Data ,Threat,Driver,9,tech_disrup
+Data Exploitation ,Threat,Driver,9,tech_disrup
+Lack of Data Literacy ,Threat,Contributor,7,tech_disrup
+Algorithmic Discrimination ,Threat,Driver,8,tech_disrup
+Redlining ,Threat,Facilitator,7,tech_disrup
+Predictive Policing ,Threat,Facilitator,8,tech_disrup
+Automated Inequality ,Threat,Driver,7,tech_disrup
+Exclusion from Opportunities ,Threat,Contributor,7,tech_disrup
+Increased Monitoring ,Threat,Driver,9,tech_disrup
+Loss of Anonymity ,Threat,Driver,9,tech_disrup
+Chilling Effect on Free Speech ,Threat,Facilitator,7,tech_disrup
+Data-Driven Conformity ,Threat,Contributor,6,tech_disrup
+Manipulation of Elections ,Threat,Facilitator,8,tech_disrup
+Rise of Authoritarianism ,Threat,Facilitator,7,tech_disrup
+Erosion of Civil Liberties ,Threat,Facilitator,8,tech_disrup
+Control of Information Flows ,Threat,Driver,8,tech_disrup
+Digital Authoritarianism ,Threat,Facilitator,9,tech_disrup
+Technological Totalitarianism ,Threat,Facilitator,8,tech_disrup
+Rise of Technocracy ,Threat,Facilitator,7,tech_disrup
+Loss of Human Agency ,Threat,Contributor,6,tech_disrup
+Dependence on Technology Corporations ,Threat,Driver,8,tech_disrup
+Monopoly Power of Tech Giants ,Threat,Driver,9,tech_disrup
+Anti-Competitive Practices ,Threat,Driver,8,tech_disrup
+Suppression of Innovation ,Threat,Contributor,6,tech_disrup
+Reduced Economic Dynamism ,Threat,Contributor,5,tech_disrup
+Concentration of Wealth ,Threat,Driver,8,tech_disrup
+Increased Income Inequality ,Threat,Driver,8,tech_disrup
+Stratification of Society ,Threat,Facilitator,7,tech_disrup
+Loss of Social Mobility ,Threat,Contributor,6,tech_disrup
+Decline of the Middle Class ,Threat,Contributor,5,tech_disrup
+Erosion of Labor Rights ,Threat,Driver,7,tech_disrup
+Weakening of Unions ,Threat,Driver,6,tech_disrup
+Increased Efficiency ,Oppor,Driver,9,tech_disrup
+Automation of Repetitive Tasks ,Oppor,Driver,9,tech_disrup
+Improved Healthcare ,Oppor,Driver,8,tech_disrup
+Personalized Medicine ,Oppor,Driver,8,tech_disrup
+Enhanced Education ,Oppor,Driver,7,tech_disrup
+Personalized Learning ,Oppor,Driver,7,tech_disrup
+Smart Cities ,Oppor,Driver,8,tech_disrup
+Sustainable Development ,Oppor,Facilitator,7,tech_disrup
+Resource Optimization ,Oppor,Driver,8,tech_disrup
+Scientific Discovery ,Oppor,Facilitator,9,tech_disrup
+Data-Driven Insights ,Oppor,Driver,9,tech_disrup
+Innovation Acceleration ,Oppor,Driver,8,tech_disrup
+New Business Models ,Oppor,Driver,7,tech_disrup
+Economic Growth ,Oppor,Facilitator,7,tech_disrup
+Increased Productivity ,Oppor,Driver,8,tech_disrup
+Global Connectivity ,Oppor,Facilitator,9,tech_disrup
+Improved Communication ,Oppor,Facilitator,9,tech_disrup
+Access to Information ,Oppor,Facilitator,10,tech_disrup
+Enhanced Creativity ,Oppor,Facilitator,7,tech_disrup
+New Forms of Art ,Oppor,Driver,7,tech_disrup
+Virtual Reality ,Oppor,Driver,8,tech_disrup
+Augmented Reality ,Oppor,Driver,8,tech_disrup
+Personalized Experiences ,Oppor,Driver,8,tech_disrup
+Immersive Entertainment ,Oppor,Driver,7,tech_disrup
+Enhanced Accessibility ,Oppor,Driver,8,tech_disrup
+Assistive Technologies ,Oppor,Driver,9,tech_disrup
+Improved Quality of Life ,Oppor,Facilitator,8,tech_disrup
+Increased Longevity ,Oppor,Facilitator,7,tech_disrup
+Data-Driven Decision Making ,Oppor,Driver,9,tech_disrup
+Evidence-Based Policy ,Oppor,Facilitator,8,tech_disrup
+Transparency and Accountability ,Oppor,Facilitator,7,tech_disrup
+Improved Governance ,Oppor,Facilitator,7,tech_disrup
+Citizen Engagement ,Oppor,Facilitator,8,tech_disrup
+Democratic Participation ,Oppor,Facilitator,8,tech_disrup
+Social Innovation ,Oppor,Facilitator,8,tech_disrup
+Collaborative Platforms ,Oppor,Driver,8,tech_disrup
+Open Source Development ,Oppor,Driver,7,tech_disrup
+Knowledge Sharing ,Oppor,Facilitator,9,tech_disrup
+Global Collaboration ,Oppor,Facilitator,9,tech_disrup
+Personalized Services ,Oppor,Driver,8,tech_disrup
+On-Demand Economy ,Oppor,Driver,7,tech_disrup
+Sharing Economy ,Oppor,Driver,7,tech_disrup
+Circular Economy ,Oppor,Facilitator,7,tech_disrup
+Sustainable Consumption ,Oppor,Facilitator,7,tech_disrup
+Resource Efficiency ,Oppor,Driver,8,tech_disrup
+Waste Reduction ,Oppor,Driver,7,tech_disrup
+Environmental Monitoring ,Oppor,Driver,8,tech_disrup
+Climate Change Mitigation ,Oppor,Facilitator,8,tech_disrup
+Renewable Energy Optimization ,Oppor,Driver,9,tech_disrup
+Smart Grids ,Oppor,Driver,8,tech_disrup
+Energy Efficiency ,Oppor,Driver,9,tech_disrup
+Precision Agriculture ,Oppor,Driver,8,tech_disrup
+Food Security ,Oppor,Facilitator,7,tech_disrup
+Supply Chain Optimization ,Oppor,Driver,8,tech_disrup
+Logistics Efficiency ,Oppor,Driver,9,tech_disrup
+Reduced Transportation Costs ,Oppor,Driver,8,tech_disrup
+Autonomous Vehicles ,Oppor,Driver,8,tech_disrup
+Smart Transportation ,Oppor,Driver,8,tech_disrup
+Reduced Traffic Congestion ,Oppor,Driver,7,tech_disrup
+Improved Public Safety ,Oppor,Driver,7,tech_disrup
+Crime Prevention ,Oppor,Driver,7,tech_disrup
+Disaster Response ,Oppor,Driver,8,tech_disrup
+Humanitarian Aid ,Oppor,Facilitator,9,tech_disrup
+Global Problem Solving ,Oppor,Facilitator,8,tech_disrup
+Data Analysis Tools ,Oppor,Driver,9,tech_disrup
+Predictive Analytics ,Oppor,Driver,9,tech_disrup
+Machine Learning ,Oppor,Driver,9,tech_disrup
+Artificial Intelligence ,Oppor,Driver,10,tech_disrup
+Natural Language Processing ,Oppor,Driver,8,tech_disrup
+Computer Vision ,Oppor,Driver,8,tech_disrup
+Robotics ,Oppor,Driver,8,tech_disrup
+Automation of Research ,Oppor,Driver,8,tech_disrup
+Accelerated Scientific Progress ,Oppor,Facilitator,9,tech_disrup
+New Scientific Discoveries ,Oppor,Driver,8,tech_disrup
+Improved Research Methods ,Oppor,Driver,8,tech_disrup
+Collaboration in Research ,Oppor,Facilitator,9,tech_disrup
+Open Science ,Oppor,Facilitator,8,tech_disrup
+Data Sharing in Research ,Oppor,Facilitator,9,tech_disrup
+Citizen Science ,Oppor,Facilitator,8,tech_disrup
+Crowdsourcing of Data ,Oppor,Driver,8,tech_disrup
+Improved Data Quality ,Oppor,Facilitator,8,tech_disrup
+Better Data Management ,Oppor,Driver,9,tech_disrup
+Data Governance Frameworks ,Oppor,Driver,7,tech_disrup
+Ethical AI Development ,Oppor,Facilitator,8,tech_disrup
+Responsible Innovation ,Oppor,Facilitator,8,tech_disrup
+Human-Centered Design ,Oppor,Facilitator,8,tech_disrup
+User-Friendly Interfaces ,Oppor,Driver,7,tech_disrup
+Digital Literacy Programs ,Oppor,Driver,8,tech_disrup
+Education for the Digital Age ,Oppor,Driver,9,tech_disrup
+Lifelong Learning ,Oppor,Facilitator,8,tech_disrup
+Reskilling and Upskilling ,Oppor,Driver,8,tech_disrup
+Adaptable Workforce ,Oppor,Facilitator,8,tech_disrup
+New Job Creation ,Oppor,Facilitator,8,tech_disrup
+Entrepreneurship Opportunities ,Oppor,Facilitator,9,tech_disrup
+Small Business Growth ,Oppor,Facilitator,8,tech_disrup
+Economic Empowerment ,Oppor,Facilitator,8,tech_disrup
+Poverty Reduction ,Oppor,Facilitator,7,tech_disrup
+Global Development ,Oppor,Facilitator,9,tech_disrup
+Improved International Relations ,Oppor,Facilitator,8,tech_disrup
+Cross-Cultural Understanding ,Oppor,Facilitator,8,tech_disrup
+Increased Income Inequality ,Threat,Driver,10,neolib_econ
+Wealth Concentration ,Threat,Driver,9,neolib_econ
+Erosion of Social Safety Nets ,Threat,Driver,9,neolib_econ
+Deregulation of Financial Markets ,Threat,Driver,8,neolib_econ
+Financial Crises ,Threat,Facilitator,9,neolib_econ
+Increased Debt Levels ,Threat,Driver,8,neolib_econ
+Tax Avoidance ,Threat,Facilitator,8,neolib_econ
+Decline of Manufacturing ,Threat,Driver,7,neolib_econ
+Job Losses ,Threat,Driver,9,neolib_econ
+Wage Stagnation ,Threat,Driver,8,neolib_econ
+Precarious Employment ,Threat,Driver,8,neolib_econ
+Weakening of Labor Unions ,Threat,Driver,9,neolib_econ
+Erosion of Worker Rights ,Threat,Driver,8,neolib_econ
+Privatization of Public Services ,Threat,Driver,8,neolib_econ
+Reduced Access to Healthcare ,Threat,Driver,8,neolib_econ
+Reduced Access to Education ,Threat,Driver,7,neolib_econ
+Environmental Degradation ,Threat,Contributor,7,neolib_econ
+Resource Depletion ,Threat,Contributor,6,neolib_econ
+Climate Change ,Threat,Contributor,8,neolib_econ
+Increased Pollution ,Threat,Contributor,7,neolib_econ
+Loss of Biodiversity ,Threat,Contributor,6,neolib_econ
+Financialization of the Economy ,Threat,Driver,8,neolib_econ
+Short-Term Thinking ,Threat,Driver,9,neolib_econ
+Speculative Bubbles ,Threat,Facilitator,8,neolib_econ
+Market Instability ,Threat,Facilitator,8,neolib_econ
+Erosion of Trust in Institutions ,Threat,Contributor,7,neolib_econ
+Political Polarization ,Threat,Contributor,7,neolib_econ
+Rise of Populism ,Threat,Facilitator,8,neolib_econ
+Nationalism ,Threat,Facilitator,7,neolib_econ
+Xenophobia ,Threat,Facilitator,6,neolib_econ
+Social Unrest ,Threat,Facilitator,7,neolib_econ
+Increased Crime Rates ,Threat,Contributor,6,neolib_econ
+Mental Health Issues ,Threat,Contributor,7,neolib_econ
+Substance Abuse ,Threat,Contributor,6,neolib_econ
+Family Breakdown ,Threat,Contributor,5,neolib_econ
+Decline in Social Cohesion ,Threat,Contributor,7,neolib_econ
+Erosion of Community ,Threat,Contributor,6,neolib_econ
+Increased Social Isolation ,Threat,Contributor,5,neolib_econ
+Loss of Cultural Identity ,Threat,Contributor,6,neolib_econ
+Commodification of Everything ,Threat,Driver,8,neolib_econ
+Erosion of Ethical Values ,Threat,Contributor,7,neolib_econ
+Corruption ,Threat,Facilitator,8,neolib_econ
+Cronyism ,Threat,Facilitator,7,neolib_econ
+Regulatory Capture ,Threat,Driver,8,neolib_econ
+Influence of Lobbying ,Threat,Driver,9,neolib_econ
+Corporate Power ,Threat,Driver,9,neolib_econ
+Reduced Government Accountability ,Threat,Driver,7,neolib_econ
+Erosion of Democratic Institutions ,Threat,Contributor,7,neolib_econ
+Decline in Civic Engagement ,Threat,Contributor,6,neolib_econ
+Political Apathy ,Threat,Contributor,5,neolib_econ
+Increased Political Instability ,Threat,Contributor,7,neolib_econ
+Geopolitical Tensions ,Threat,Contributor,6,neolib_econ
+Resource Conflicts ,Threat,Contributor,7,neolib_econ
+Migration Crises ,Threat,Contributor,6,neolib_econ
+Increased Military Spending ,Threat,Contributor,7,neolib_econ
+Weakening of International Cooperation ,Threat,Contributor,6,neolib_econ
+Global Inequality ,Threat,Driver,9,neolib_econ
+Exploitation of Developing Countries ,Threat,Driver,8,neolib_econ
+Debt Crises in Developing Countries ,Threat,Facilitator,8,neolib_econ
+Brain Drain ,Threat,Facilitator,7,neolib_econ
+Loss of Local Economies ,Threat,Driver,7,neolib_econ
+Homogenization of Culture ,Threat,Contributor,6,neolib_econ
+Cultural Imperialism ,Threat,Contributor,7,neolib_econ
+Loss of Traditional Knowledge ,Threat,Contributor,6,neolib_econ
+Increased Consumerism ,Threat,Driver,8,neolib_econ
+Wasteful Consumption ,Threat,Contributor,7,neolib_econ
+Planned Obsolescence ,Threat,Driver,8,neolib_econ
+Environmental Pollution ,Threat,Contributor,7,neolib_econ
+Overconsumption of Resources ,Threat,Contributor,6,neolib_econ
+Increased Packaging Waste ,Threat,Contributor,7,neolib_econ
+Growth of Fast Fashion ,Threat,Contributor,7,neolib_econ
+Decline in Product Quality ,Threat,Contributor,6,neolib_econ
+Loss of Craftsmanship ,Threat,Contributor,5,neolib_econ
+Erosion of Local Businesses ,Threat,Driver,8,neolib_econ
+Dominance of Multinational Corporations ,Threat,Driver,9,neolib_econ
+Anti-Competitive Practices ,Threat,Driver,8,neolib_econ
+Monopoly Power ,Threat,Driver,9,neolib_econ
+Suppression of Innovation ,Threat,Contributor,6,neolib_econ
+Reduced Economic Dynamism ,Threat,Contributor,5,neolib_econ
+Increased Market Volatility ,Threat,Facilitator,8,neolib_econ
+Financial Contagion ,Threat,Facilitator,9,neolib_econ
+Systemic Risk ,Threat,Facilitator,9,neolib_econ
+Moral Hazard ,Threat,Driver,8,neolib_econ
+Too Big to Fail ,Threat,Driver,9,neolib_econ
+Government Bailouts ,Threat,Facilitator,8,neolib_econ
+Transfer of Wealth to the Rich ,Threat,Driver,9,neolib_econ
+Increased Social Fragmentation ,Threat,Contributor,7,neolib_econ
+Loss of Social Trust ,Threat,Contributor,7,neolib_econ
+Decline in Social Capital ,Threat,Contributor,6,neolib_econ
+Erosion of Public Discourse ,Threat,Contributor,7,neolib_econ
+Rise of Misinformation ,Threat,Contributor,7,neolib_econ
+Increased Political Cynicism ,Threat,Contributor,6,neolib_econ
+Decline in Political Participation ,Threat,Contributor,5,neolib_econ
+Erosion of the Rule of Law ,Threat,Contributor,7,neolib_econ
+Increased Corruption ,Threat,Facilitator,8,neolib_econ
+Weakening of Legal Systems ,Threat,Contributor,6,neolib_econ
+Erosion of Human Rights ,Threat,Contributor,7,neolib_econ
+Increased Social Injustice ,Threat,Contributor,7,neolib_econ
+Perpetuation of Inequality ,Threat,Driver,9,neolib_econ
+Unsustainable Development ,Threat,Contributor,8,neolib_econ
+Increased Efficiency ,Oppor,Facilitator,6,neolib_econ
+Innovation ,Oppor,Facilitator,7,neolib_econ
+Competition ,Oppor,Driver,8,neolib_econ
+Lower Prices ,Oppor,Driver,7,neolib_econ
+Greater Choice for Consumers ,Oppor,Driver,8,neolib_econ
+Economic Growth ,Oppor,Facilitator,7,neolib_econ
+Job Creation ,Oppor,Facilitator,6,neolib_econ
+Wealth Creation ,Oppor,Facilitator,7,neolib_econ
+Improved Living Standards ,Oppor,Facilitator,6,neolib_econ
+Access to More Goods and Services ,Oppor,Driver,8,neolib_econ
+Global Trade ,Oppor,Driver,9,neolib_econ
+International Cooperation ,Oppor,Facilitator,7,neolib_econ
+Cultural Exchange ,Oppor,Facilitator,6,neolib_econ
+Increased Interconnectedness ,Oppor,Facilitator,8,neolib_econ
+Spread of Ideas ,Oppor,Facilitator,7,neolib_econ
+Technological Progress ,Oppor,Facilitator,7,neolib_econ
+Improved Communication ,Oppor,Facilitator,8,neolib_econ
+Greater Access to Information ,Oppor,Facilitator,9,neolib_econ
+Educational Opportunities ,Oppor,Facilitator,7,neolib_econ
+Skill Development ,Oppor,Facilitator,6,neolib_econ
+Entrepreneurship ,Oppor,Facilitator,8,neolib_econ
+Innovation in Business ,Oppor,Facilitator,7,neolib_econ
+Increased Efficiency in Production ,Oppor,Facilitator,7,neolib_econ
+Resource Optimization ,Oppor,Facilitator,6,neolib_econ
+Lower Production Costs ,Oppor,Driver,7,neolib_econ
+Higher Profits ,Oppor,Driver,8,neolib_econ
+Investment Opportunities ,Oppor,Facilitator,7,neolib_econ
+Increased Returns on Investment ,Oppor,Driver,8,neolib_econ
+Global Investment Flows ,Oppor,Driver,9,neolib_econ
+Efficient Allocation of Capital ,Oppor,Facilitator,7,neolib_econ
+Development of Financial Markets ,Oppor,Driver,8,neolib_econ
+Financial Innovation ,Oppor,Facilitator,7,neolib_econ
+Risk Management ,Oppor,Facilitator,6,neolib_econ
+Hedging Strategies ,Oppor,Facilitator,7,neolib_econ
+Portfolio Diversification ,Oppor,Driver,7,neolib_econ
+Efficient Price Discovery ,Oppor,Driver,8,neolib_econ
+Market Transparency ,Oppor,Facilitator,7,neolib_econ
+Greater Market Liquidity ,Oppor,Driver,8,neolib_econ
+Improved Market Access ,Oppor,Driver,8,neolib_econ
+Globalized Production ,Oppor,Driver,9,neolib_econ
+Supply Chain Efficiency ,Oppor,Driver,8,neolib_econ
+Logistics Optimization ,Oppor,Driver,7,neolib_econ
+Reduced Transportation Costs ,Oppor,Driver,7,neolib_econ
+Access to Cheaper Labor ,Oppor,Driver,8,neolib_econ
+Global Sourcing ,Oppor,Driver,9,neolib_econ
+Outsourcing ,Oppor,Driver,8,neolib_econ
+Offshoring ,Oppor,Driver,7,neolib_econ
+Increased Profit Margins ,Oppor,Driver,8,neolib_econ
+Shareholder Value ,Oppor,Driver,9,neolib_econ
+Corporate Growth ,Oppor,Driver,8,neolib_econ
+Rising Global Temperatures ,Threat,Driver,10,clim_chg
+Extreme Weather Events ,Threat,Driver,9,clim_chg
+Sea Level Rise ,Threat,Driver,9,clim_chg
+Melting Glaciers and Ice Sheets ,Threat,Driver,9,clim_chg
+Ocean Acidification ,Threat,Driver,8,clim_chg
+Loss of Biodiversity ,Threat,Driver,9,clim_chg
+Ecosystem Collapse ,Threat,Driver,8,clim_chg
+Food Insecurity ,Threat,Contributor,8,clim_chg
+Water Scarcity ,Threat,Contributor,8,clim_chg
+Droughts ,Threat,Driver,8,clim_chg
+Floods ,Threat,Driver,8,clim_chg
+Wildfires ,Threat,Driver,8,clim_chg
+Heatwaves ,Threat,Driver,9,clim_chg
+Hurricanes and Typhoons ,Threat,Driver,8,clim_chg
+Economic Losses ,Threat,Contributor,8,clim_chg
+Displacement of Populations ,Threat,Contributor,8,clim_chg
+Migration Crises ,Threat,Contributor,7,clim_chg
+Geopolitical Instability ,Threat,Contributor,7,clim_chg
+Resource Conflicts ,Threat,Contributor,7,clim_chg
+Health Impacts ,Threat,Contributor,9,clim_chg
+Spread of Diseases ,Threat,Contributor,7,clim_chg
+Infrastructure Damage ,Threat,Contributor,8,clim_chg
+Agricultural Losses ,Threat,Contributor,8,clim_chg
+Coastal Erosion ,Threat,Driver,8,clim_chg
+Coral Reef Bleaching ,Threat,Driver,9,clim_chg
+Deforestation ,Threat,Contributor,7,clim_chg
+Permafrost Thaw ,Threat,Driver,8,clim_chg
+Methane Release ,Threat,Contributor,7,clim_chg
+Climate Feedback Loops ,Threat,Driver,9,clim_chg
+Increased Greenhouse Gas Emissions ,Threat,Driver,9,clim_chg
+Air Pollution ,Threat,Contributor,8,clim_chg
+Water Pollution ,Threat,Contributor,7,clim_chg
+Soil Degradation ,Threat,Contributor,7,clim_chg
+Loss of Arable Land ,Threat,Contributor,7,clim_chg
+Decline in Crop Yields ,Threat,Contributor,8,clim_chg
+Livestock Stress ,Threat,Contributor,7,clim_chg
+Disruption of Marine Ecosystems ,Threat,Driver,8,clim_chg
+Loss of Fisheries ,Threat,Contributor,7,clim_chg
+Extinction of Species ,Threat,Driver,9,clim_chg
+Habitat Loss ,Threat,Driver,8,clim_chg
+Spread of Invasive Species ,Threat,Contributor,7,clim_chg
+Increased Ocean Temperatures ,Threat,Driver,9,clim_chg
+Altered Ocean Currents ,Threat,Driver,8,clim_chg
+Changing Precipitation Patterns ,Threat,Driver,8,clim_chg
+Increased Evaporation ,Threat,Driver,7,clim_chg
+Reduced Snowpack ,Threat,Driver,8,clim_chg
+Glacier Retreat ,Threat,Driver,9,clim_chg
+Ice Sheet Instability ,Threat,Driver,9,clim_chg
+Sea Ice Decline ,Threat,Driver,9,clim_chg
+Changes in Albedo ,Threat,Driver,8,clim_chg
+Altered Energy Balance ,Threat,Driver,9,clim_chg
+Shifts in Climate Zones ,Threat,Driver,8,clim_chg
+Increased Vector-Borne Diseases ,Threat,Contributor,7,clim_chg
+Heat Stress ,Threat,Driver,8,clim_chg
+Respiratory Problems ,Threat,Contributor,7,clim_chg
+Cardiovascular Diseases ,Threat,Contributor,6,clim_chg
+Malnutrition ,Threat,Contributor,7,clim_chg
+Mental Health Impacts ,Threat,Contributor,7,clim_chg
+Increased Stress Levels ,Threat,Contributor,6,clim_chg
+Anxiety and Depression ,Threat,Contributor,6,clim_chg
+Trauma from Disasters ,Threat,Contributor,7,clim_chg
+Loss of Homes and Livelihoods ,Threat,Contributor,8,clim_chg
+Economic Disruption ,Threat,Contributor,8,clim_chg
+Supply Chain Disruptions ,Threat,Contributor,7,clim_chg
+Infrastructure Damage ,Threat,Contributor,8,clim_chg
+Reduced Tourism ,Threat,Contributor,6,clim_chg
+Increased Insurance Costs ,Threat,Contributor,7,clim_chg
+Property Value Decline ,Threat,Contributor,7,clim_chg
+Increased Energy Demand ,Threat,Contributor,7,clim_chg
+Increased Water Demand ,Threat,Contributor,7,clim_chg
+Higher Food Prices ,Threat,Contributor,8,clim_chg
+Increased Inequality ,Threat,Contributor,7,clim_chg
+Exacerbation of Existing Vulnerabilities ,Threat,Contributor,8,clim_chg
+Disproportionate Impacts on Marginalized Communities ,Threat,Contributor,9,clim_chg
+Environmental Justice Issues ,Threat,Contributor,8,clim_chg
+Climate Refugees ,Threat,Driver,8,clim_chg
+Internal Displacement ,Threat,Contributor,7,clim_chg
+Loss of Cultural Heritage ,Threat,Contributor,6,clim_chg
+Damage to Historic Sites ,Threat,Contributor,6,clim_chg
+Loss of Traditional Practices ,Threat,Contributor,5,clim_chg
+Increased Social Conflict ,Threat,Contributor,7,clim_chg
+Political Instability ,Threat,Contributor,7,clim_chg
+Weakening of Governance ,Threat,Contributor,6,clim_chg
+Erosion of Trust in Institutions ,Threat,Contributor,6,clim_chg
+Increased Corruption ,Threat,Facilitator,6,clim_chg
+Weakening of Legal Systems ,Threat,Contributor,6,clim_chg
+Violations of Human Rights ,Threat,Contributor,7,clim_chg
+Loss of Security ,Threat,Contributor,7,clim_chg
+Increased Violence ,Threat,Contributor,6,clim_chg
+Armed Conflicts over Resources ,Threat,Contributor,7,clim_chg
+Increased Military Spending ,Threat,Contributor,7,clim_chg
+Diversion of Resources from Development ,Threat,Contributor,7,clim_chg
+Slowing of Economic Progress ,Threat,Contributor,7,clim_chg
+Increased Poverty ,Threat,Contributor,8,clim_chg
+Food Shortages ,Threat,Contributor,8,clim_chg
+Famine ,Threat,Contributor,7,clim_chg
+Mass Starvation ,Threat,Contributor,7,clim_chg
+Loss of Human Life ,Threat,Contributor,9,clim_chg
+Existential Threat to Humanity ,Threat,Driver,10,clim_chg
+Increased Investment in Disaster Response ,Threat,Facilitator,6,clim_chg
+Renewable Energy Development ,Oppor,Driver,9,clim_chg
+Green Jobs Creation ,Oppor,Facilitator,8,clim_chg
+Energy Efficiency Improvements ,Oppor,Driver,8,clim_chg
+Sustainable Agriculture Practices ,Oppor,Driver,7,clim_chg
+Carbon Capture Technologies ,Oppor,Driver,7,clim_chg
+Climate Resilience Building ,Oppor,Facilitator,8,clim_chg
+New Technologies and Innovations ,Oppor,Driver,8,clim_chg
+Global Collaboration ,Oppor,Facilitator,9,clim_chg
+Green Economy Transition ,Oppor,Driver,8,clim_chg
+Sustainable Development ,Oppor,Facilitator,9,clim_chg
+Climate Mitigation Strategies ,Oppor,Driver,9,clim_chg
+Climate Adaptation Measures ,Oppor,Driver,8,clim_chg
+Enhanced Environmental Awareness ,Oppor,Facilitator,7,clim_chg
+Shift to Sustainable Consumption ,Oppor,Facilitator,7,clim_chg
+Improved Resource Management ,Oppor,Facilitator,8,clim_chg
+Circular Economy Growth ,Oppor,Driver,7,clim_chg
+Reduced Waste Generation ,Oppor,Facilitator,7,clim_chg
+Improved Air Quality ,Oppor,Facilitator,8,clim_chg
+Healthier Ecosystems ,Oppor,Facilitator,8,clim_chg
+Preservation of Biodiversity ,Oppor,Facilitator,9,clim_chg
+Reduced Ocean Acidification ,Oppor,Facilitator,7,clim_chg
+Climate-Smart Agriculture ,Oppor,Driver,7,clim_chg
+Enhanced Food Security ,Oppor,Facilitator,8,clim_chg
+Water Conservation ,Oppor,Facilitator,8,clim_chg
+Development of Drought-Resistant Crops ,Oppor,Driver,7,clim_chg
+Flood Control Measures ,Oppor,Driver,7,clim_chg
+Wildfire Prevention ,Oppor,Driver,7,clim_chg
+Improved Disaster Preparedness ,Oppor,Facilitator,8,clim_chg
+Climate-Resilient Infrastructure ,Oppor,Driver,8,clim_chg
+Green Building Practices ,Oppor,Driver,8,clim_chg
+Sustainable Transportation Systems ,Oppor,Driver,8,clim_chg
+Electric Vehicle Adoption ,Oppor,Driver,9,clim_chg
+Public Transportation Expansion ,Oppor,Facilitator,8,clim_chg
+Reduced Reliance on Fossil Fuels ,Oppor,Driver,9,clim_chg
+Diversification of Energy Sources ,Oppor,Driver,8,clim_chg
+Energy Independence ,Oppor,Facilitator,7,clim_chg
+Energy Security ,Oppor,Facilitator,8,clim_chg
+Reduced Air Pollution ,Oppor,Facilitator,8,clim_chg
+Healthier Populations ,Oppor,Facilitator,8,clim_chg
+Improved Quality of Life ,Oppor,Facilitator,8,clim_chg
+New Business Opportunities ,Oppor,Facilitator,9,clim_chg
+Increased Innovation ,Oppor,Facilitator,9,clim_chg
+Economic Growth ,Oppor,Facilitator,8,clim_chg
+Investment in Green Technologies ,Oppor,Driver,9,clim_chg
+Increased Research and Development ,Oppor,Driver,8,clim_chg
+Scientific Discoveries ,Oppor,Facilitator,9,clim_chg
+Improved Climate Modeling ,Oppor,Driver,8,clim_chg
+Better Climate Predictions ,Oppor,Facilitator,8,clim_chg
+More Effective Climate Policies ,Oppor,Facilitator,9,clim_chg
+Global Climate Agreements ,Oppor,Facilitator,9,clim_chg
+Great Power Competition ,Threat,Driver,9,geopol
+Trade Wars ,Threat,Driver,8,geopol
+Military Conflicts ,Threat,Contributor,8,geopol
+Proxy Wars ,Threat,Contributor,7,geopol
+Cyber Warfare ,Threat,Contributor,8,geopol
+Information Warfare ,Threat,Contributor,7,geopol
+Economic Sanctions ,Threat,Driver,8,geopol
+Resource Conflicts ,Threat,Driver,9,geopol
+Territorial Disputes ,Threat,Driver,8,geopol
+Maritime Disputes ,Threat,Driver,8,geopol
+Border Tensions ,Threat,Driver,8,geopol
+Arms Races ,Threat,Driver,9,geopol
+Nuclear Proliferation ,Threat,Contributor,9,geopol
+Weapons of Mass Destruction ,Threat,Contributor,9,geopol
+Terrorism ,Threat,Contributor,8,geopol
+Extremism ,Threat,Contributor,7,geopol
+Political Instability ,Threat,Contributor,8,geopol
+Regime Change ,Threat,Driver,8,geopol
+Failed States ,Threat,Contributor,7,geopol
+Humanitarian Crises ,Threat,Contributor,7,geopol
+Refugee Flows ,Threat,Contributor,7,geopol
+Migration Crises ,Threat,Contributor,7,geopol
+Disease Outbreaks ,Threat,Contributor,6,geopol
+Pandemics ,Threat,Contributor,7,geopol
+Economic Disruptions ,Threat,Contributor,8,geopol
+Supply Chain Vulnerabilities ,Threat,Contributor,7,geopol
+Inflation ,Threat,Contributor,6,geopol
+Currency Fluctuations ,Threat,Contributor,6,geopol
+Debt Crises ,Threat,Contributor,7,geopol
+Financial Contagion ,Threat,Contributor,7,geopol
+Protectionism ,Threat,Driver,7,geopol
+Trade Barriers ,Threat,Driver,7,geopol
+Reduced Global Trade ,Threat,Contributor,7,geopol
+Slowing of Economic Growth ,Threat,Contributor,7,geopol
+Increased Poverty ,Threat,Contributor,7,geopol
+Food Insecurity ,Threat,Contributor,7,geopol
+Water Scarcity ,Threat,Contributor,7,geopol
+Climate Change Impacts ,Threat,Contributor,8,geopol
+Environmental Degradation ,Threat,Contributor,7,geopol
+Resource Depletion ,Threat,Contributor,6,geopol
+Loss of Biodiversity ,Threat,Contributor,6,geopol
+Ecosystem Collapse ,Threat,Contributor,6,geopol
+Loss of Cultural Heritage ,Threat,Contributor,6,geopol
+Damage to Historic Sites ,Threat,Contributor,5,geopol
+Loss of Traditional Practices ,Threat,Contributor,5,geopol
+Erosion of International Law ,Threat,Contributor,6,geopol
+Weakening of International Institutions ,Threat,Contributor,7,geopol
+Decline of Multilateralism ,Threat,Driver,8,geopol
+Rise of Nationalism ,Threat,Driver,8,geopol
+Populism ,Threat,Driver,7,geopol
+Xenophobia ,Threat,Driver,7,geopol
+Authoritarianism ,Threat,Facilitator,8,geopol
+Erosion of Democracy ,Threat,Contributor,7,geopol
+Human Rights Violations ,Threat,Contributor,7,geopol
+Censorship ,Threat,Contributor,6,geopol
+Surveillance ,Threat,Contributor,6,geopol
+Political Repression ,Threat,Facilitator,7,geopol
+Social Unrest ,Threat,Contributor,7,geopol
+Political Violence ,Threat,Contributor,7,geopol
+Terrorism ,Threat,Contributor,7,geopol
+Extremism ,Threat,Contributor,6,geopol
+Civil Wars ,Threat,Contributor,8,geopol
+Insurgencies ,Threat,Contributor,7,geopol
+Ethnic Cleansing ,Threat,Contributor,8,geopol
+Genocide ,Threat,Contributor,9,geopol
+Crimes Against Humanity ,Threat,Contributor,9,geopol
+Forced Displacement ,Threat,Contributor,8,geopol
+Human Trafficking ,Threat,Contributor,7,geopol
+Slavery ,Threat,Contributor,6,geopol
+Torture ,Threat,Contributor,7,geopol
+Extrajudicial Killings ,Threat,Contributor,7,geopol
+Arbitrary Detention ,Threat,Contributor,6,geopol
+Suppression of Dissent ,Threat,Facilitator,7,geopol
+Restriction of Freedoms ,Threat,Contributor,7,geopol
+Control of Information ,Threat,Contributor,7,geopol
+Propaganda ,Threat,Facilitator,8,geopol
+Misinformation ,Threat,Facilitator,7,geopol
+Disinformation ,Threat,Facilitator,8,geopol
+Echo Chambers ,Threat,Contributor,6,geopol
+Filter Bubbles ,Threat,Contributor,6,geopol
+Online Radicalization ,Threat,Facilitator,7,geopol
+Social Polarization ,Threat,Contributor,7,geopol
+Economic Coercion ,Threat,Driver,8,geopol
+Political Interference ,Threat,Driver,8,geopol
+Meddling in Elections ,Threat,Driver,8,geopol
+Support for Authoritarian Regimes ,Threat,Contributor,7,geopol
+Undermining of Democratic Institutions ,Threat,Contributor,7,geopol
+Double Standards ,Threat,Contributor,6,geopol
+Selective Enforcement of International Law ,Threat,Contributor,7,geopol
+Erosion of Trust in International Organizations ,Threat,Contributor,7,geopol
+Geopolitical Rivalry ,Threat,Driver,9,geopol
+Zero-Sum Thinking ,Threat,Contributor,7,geopol
+Spheres of Influence ,Threat,Driver,8,geopol
+Power Imbalances ,Threat,Contributor,7,geopol
+Hegemonic Ambitions ,Threat,Driver,9,geopol
+Imperialism ,Threat,Contributor,8,geopol
+Colonialism ,Threat,Contributor,7,geopol
+Neo-Colonialism ,Threat,Contributor,8,geopol
+Global Instability ,Threat,Contributor,9,geopol
+Multipolar World Order ,Oppor,Facilitator,8,geopol
+Regional Cooperation ,Oppor,Driver,8,geopol
+Balance of Power ,Oppor,Facilitator,7,geopol
+Peaceful Competition ,Oppor,Facilitator,7,geopol
+Diplomacy and Negotiation ,Oppor,Driver,9,geopol
+Conflict Resolution ,Oppor,Facilitator,8,geopol
+Mediation ,Oppor,Facilitator,7,geopol
+Arms Control Agreements ,Oppor,Driver,8,geopol
+Disarmament Initiatives ,Oppor,Facilitator,7,geopol
+Nuclear Non-Proliferation ,Oppor,Facilitator,9,geopol
+International Law Enforcement ,Oppor,Facilitator,8,geopol
+Strengthening of International Institutions ,Oppor,Driver,8,geopol
+Reform of the United Nations ,Oppor,Facilitator,7,geopol
+Global Governance ,Oppor,Facilitator,8,geopol
+Promotion of Democracy ,Oppor,Facilitator,7,geopol
+Human Rights Advocacy ,Oppor,Driver,8,geopol
+Rule of Law ,Oppor,Facilitator,9,geopol
+Good Governance ,Oppor,Facilitator,8,geopol
+Transparency and Accountability ,Oppor,Facilitator,7,geopol
+Anti-Corruption Efforts ,Oppor,Facilitator,8,geopol
+Protection of Civil Liberties ,Oppor,Facilitator,8,geopol
+Freedom of Expression ,Oppor,Facilitator,9,geopol
+Press Freedom ,Oppor,Facilitator,8,geopol
+Independent Media ,Oppor,Facilitator,8,geopol
+Access to Information ,Oppor,Facilitator,9,geopol
+Education for All ,Oppor,Driver,8,geopol
+Global Literacy ,Oppor,Facilitator,8,geopol
+Skill Development ,Oppor,Driver,7,geopol
+Economic Empowerment ,Oppor,Facilitator,8,geopol
+Poverty Reduction ,Oppor,Facilitator,7,geopol
+Sustainable Development ,Oppor,Facilitator,9,geopol
+Environmental Protection ,Oppor,Facilitator,8,geopol
+Climate Change Mitigation ,Oppor,Facilitator,8,geopol
+Resource Management ,Oppor,Facilitator,7,geopol
+Conservation Efforts ,Oppor,Facilitator,7,geopol
+Renewable Energy Development ,Oppor,Facilitator,8,geopol
+Green Jobs Creation ,Oppor,Facilitator,7,geopol
+Sustainable Agriculture ,Oppor,Facilitator,7,geopol
+Food Security Initiatives ,Oppor,Facilitator,7,geopol
+Water Management ,Oppor,Facilitator,7,geopol
+Improved Sanitation ,Oppor,Facilitator,6,geopol
+Healthcare Access ,Oppor,Facilitator,7,geopol
+Disease Prevention ,Oppor,Facilitator,7,geopol
+Pandemic Preparedness ,Oppor,Facilitator,8,geopol
+Disaster Relief ,Oppor,Facilitator,9,geopol
+Humanitarian Aid ,Oppor,Driver,9,geopol
+Refugee Assistance ,Oppor,Driver,8,geopol
+Migration Management ,Oppor,Facilitator,7,geopol
+Cultural Exchange ,Oppor,Facilitator,8,geopol
+Intercultural Dialogue ,Oppor,Facilitator,7,geopol
+Global Understanding ,Oppor,Facilitator,8,geopol
+Peaceful Coexistence ,Oppor,Facilitator,9,geopol
+Shared Prosperity ,Oppor,Facilitator,8,geopol
+Collective Security ,Oppor,Facilitator,7,geopol
+International Cooperation ,Oppor,Driver,9,geopol
+Multilateral Partnerships ,Oppor,Driver,8,geopol
+Shared Problem Solving ,Oppor,Facilitator,8,geopol
+Global Challenges Addressed ,Oppor,Facilitator,9,geopol
+Improved International Relations ,Oppor,Facilitator,8,geopol
+Reduced Conflict ,Oppor,Facilitator,9,geopol
+Enhanced Security ,Oppor,Facilitator,8,geopol
+Stability in Global Affairs ,Oppor,Facilitator,8,geopol
+Economic Growth ,Oppor,Facilitator,8,geopol
+Trade Opportunities ,Oppor,Driver,8,geopol
+Investment Flows ,Oppor,Driver,8,geopol
+Market Expansion ,Oppor,Driver,7,geopol
+Technological Advancement ,Oppor,Facilitator,8,geopol
+Innovation ,Oppor,Facilitator,7,geopol
+Knowledge Sharing ,Oppor,Facilitator,8,geopol
+Scientific Collaboration ,Oppor,Facilitator,8,geopol
+Research and Development ,Oppor,Facilitator,7,geopol
+Improved Communication ,Oppor,Facilitator,8,geopol
+Access to Information ,Oppor,Facilitator,9,geopol
+Digital Connectivity ,Oppor,Facilitator,8,geopol
+Globalized Culture ,Oppor,Facilitator,7,geopol
+Interconnected World ,Oppor,Facilitator,9,geopol
+Shared Values ,Oppor,Facilitator,7,geopol
+Common Goals ,Oppor,Facilitator,8,geopol
+Collective Action ,Oppor,Facilitator,8,geopol
+Shared Responsibility ,Oppor,Facilitator,7,geopol
+Global Citizenship ,Oppor,Facilitator,8,geopol
+A More Just World ,Oppor,Facilitator,9,geopol
+A More Equitable World ,Oppor,Facilitator,8,geopol
+A More Sustainable World ,Oppor,Facilitator,9,geopol
+A More Peaceful World ,Oppor,Facilitator,10,geopol
