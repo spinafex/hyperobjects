@@ -1,0 +1,58 @@
+!pip install transformers sentence_transformers scipy numpy pandas
+
+import pandas as pd
+import numpy as np
+import torch
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
+from sentence_transformers import SentenceTransformer
+from scipy.spatial.distance import cdist
+
+# Load term list
+df = pd.read_csv("term.csv", header=None)
+terms = df[0].tolist()
+
+# Define influence-based relationships
+influence_types = ["enhances", "mitigates"] #, "constrains", "aggravates"]
+
+# Load pre-trained NLP models
+embedding_model = SentenceTransformer('all-MiniLM-L6-v2')  # For term similarity
+causal_model_name = "microsoft/xtremedistil-l6-h256-uncased"  # CausalBERT model
+causal_model = AutoModelForSequenceClassification.from_pretrained(causal_model_name, num_labels=len(influence_types))
+tokenizer = AutoTokenizer.from_pretrained(causal_model_name)
+
+# Encode all terms and influence types
+term_embeddings = embedding_model.encode(terms, convert_to_tensor=False)
+influence_embeddings = embedding_model.encode(influence_types, convert_to_tensor=False)
+
+# Compute pairwise cosine similarity between all terms
+cosine_similarities = 1 - cdist(term_embeddings, term_embeddings, metric="cosine")
+
+# Define intensity threshold
+THRESHOLD = 0.5
+
+# Function to determine best influence type using CausalBERT
+def classify_influence(term1, term2):
+    text = f"{term1} affects {term2}"  # Format input for causal analysis
+    inputs = tokenizer(text, return_tensors="pt", truncation=True, padding=True)
+    with torch.no_grad():
+        outputs = causal_model(**inputs)
+    predicted_label = torch.argmax(outputs.logits).item()
+    return influence_types[predicted_label]  # Return the most likely influence type
+
+# Find strong relationships
+relations = []
+num_terms = len(terms)
+
+for i in range(num_terms):
+    for j in range(i + 1, num_terms):  # Avoid redundant pairs
+        intensity = round(cosine_similarities[i, j], 3)
+        if intensity >= THRESHOLD:  # Keep only strong relationships
+            best_relation = classify_influence(terms[i], terms[j])
+            relations.append((terms[i], best_relation, terms[j], intensity))
+
+# Save output for Neo4j or graph visualization
+ontology_df = pd.DataFrame(relations, columns=["Source", "Relation", "Target", "Intensity"])
+ontology_df.to_csv("filtered_influence_ontology.csv", index=False)
+
+# Print a sample
+print(ontology_df.head())
