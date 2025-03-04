@@ -1,0 +1,68 @@
+!pip install fitz
+
+!pip install pymupdf spacy nltk pandas
+!python -m spacy download en_core_web_md
+
+import fitz  # PyMuPDF for PDF processing
+import pandas as pd
+import spacy
+import nltk
+from nltk.corpus import stopwords
+from collections import defaultdict
+
+# Download necessary NLP resources
+nltk.download('stopwords')
+
+# Load spaCy language model
+nlp = spacy.load("en_core_web_md")  # Use "md" or "lg" for better similarity comparisons
+
+# Define keywords for classification
+risk_keywords = ["loss", "danger", "threat", "hazard", "uncertainty", "liability", "failure", "downside"]
+opportunity_keywords = ["growth", "profit", "advantage", "potential", "success", "benefit", "upside"]
+
+# Convert keywords to spaCy vectors for similarity comparison
+risk_vectors = [nlp(word) for word in risk_keywords]
+opportunity_vectors = [nlp(word) for word in opportunity_keywords]
+
+# Function to classify a term based on similarity
+def classify_term(term):
+    term_doc = nlp(term)
+
+    # Compute similarity scores
+    risk_score = max(term_doc.similarity(risk) for risk in risk_vectors)
+    opportunity_score = max(term_doc.similarity(opportunity) for opportunity in opportunity_vectors)
+
+    # Assign classification based on higher similarity
+    if risk_score > opportunity_score and risk_score > 0.5:
+        return "Risk"
+    elif opportunity_score > risk_score and opportunity_score > 0.5:
+        return "Opportunity"
+    else:
+        return None  # Ignore ambiguous terms
+
+# Function to extract text from PDF
+def extract_text_from_pdf(pdf_path):
+    doc = fitz.open(pdf_path)
+    text = "\n".join([page.get_text("text") for page in doc])
+    return text
+
+# Load PDF and extract terms
+pdf_text = extract_text_from_pdf("WEF.pdf")
+
+# Tokenize words and remove stopwords
+words = [word.lower() for word in pdf_text.split() if word.isalpha()]
+filtered_words = [word for word in words if word not in stopwords.words("english")]
+
+# Classify terms
+classified_terms = defaultdict(list)
+for word in set(filtered_words):  # Use set to avoid duplicates
+    classification = classify_term(word)
+    if classification:
+        classified_terms["Term"].append(word)
+        classified_terms["Classification"].append(classification)
+
+# Save to CSV
+df = pd.DataFrame(classified_terms)
+df.to_csv("terms.csv", index=False)
+
+print("✅ Classification complete. File saved as terms.csv")
