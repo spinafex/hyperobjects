@@ -1,0 +1,187 @@
+# Install required libraries
+!pip install PyPDF2 spacy networkx matplotlib
+!python -m spacy download en_core_web_sm
+
+import PyPDF2
+import spacy
+import networkx as nx
+import matplotlib.pyplot as plt
+from google.colab import files
+from collections import defaultdict
+
+# Upload PDF file
+def upload_pdf():
+    uploaded = files.upload()
+    for filename in uploaded.keys():
+        return filename
+    return None
+
+# Extract text from PDF
+def extract_text_from_pdf(pdf_path):
+    try:
+        with open(pdf_path, 'rb') as file:
+            pdf_reader = PyPDF2.PdfReader(file)
+            text = ""
+            for page in pdf_reader.pages:
+                text += page.extract_text()
+        return text
+    except Exception as e:
+        print(f"Error reading PDF: {e}")
+        return None
+
+# Expanded influence words with effect categories
+influence_categories = {
+    'amplifies': {'increase', 'enhance', 'boost', 'amplify', 'strengthen', 'expand', 'elevate', 'intensify'},
+    'challenges': {'challenge', 'oppose', 'contradict', 'dispute', 'question', 'undermine', 'weaken', 'counter'},
+    'drives': {'drive', 'cause', 'lead', 'trigger', 'induce', 'propel', 'generate', 'spark'},
+    'exposes': {'expose', 'reveal', 'uncover', 'disclose', 'highlight', 'demonstrate', 'show', 'illustrate'},
+    'mitigates': {'mitigate', 'reduce', 'decrease', 'lessen', 'alleviate', 'moderate', 'diminish', 'soften'},
+    'affects': {'affect', 'influence', 'impact', 'shape', 'alter', 'modify', 'transform', 'change'}
+}
+
+# Process text and extract entities and relationships
+def extract_influence_ontology(text):
+    nlp = spacy.load("en_core_web_sm")
+    doc = nlp(text)
+    
+    entities = set()
+    relationships = defaultdict(list)
+    
+    # Flatten influence words for detection
+    all_influence_words = set()
+    for words in influence_categories.values():
+        all_influence_words.update(words)
+    
+    for sent in doc.sents:
+        for ent in sent.ents:
+            entities.add((ent.text, ent.label_))
+            
+        tokens = [token.text.lower() for token in sent]
+        
+        for i, token in enumerate(tokens):
+            if token in all_influence_words:
+                source = None
+                target = None
+                
+                # Check previous tokens for source
+                for j in range(max(0, i-5), i):
+                    for ent_text, _ in entities:
+                        if ent_text.lower() in tokens[j]:
+                            source = ent_text
+                            break
+                            
+                # Check next tokens for target
+                for j in range(i+1, min(len(tokens), i+6)):
+                    for ent_text, _ in entities:
+                        if ent_text.lower() in tokens[j]:
+                            target = ent_text
+                            break
+                
+                if source and target and source != target:
+                    # Categorize the effect
+                    effect_type = 'affects'  # Default
+                    for category, words in influence_categories.items():
+                        if token in words:
+                            effect_type = category
+                            break
+                    
+                    relationships[source].append((target, effect_type))
+    
+    return entities, relationships
+
+# Create and visualize knowledge graph
+def create_knowledge_graph(entities, relationships, filter_isolated_nodes=False):
+    G = nx.DiGraph()
+    
+    # Add nodes
+    for entity, label in entities:
+        G.add_node(entity, type=label)
+    
+    # Add edges with effect types
+    edge_colors = {
+        'amplifies': 'green',
+        'challenges': 'red',
+        'drives': 'blue',
+        'exposes': 'purple',
+        'mitigates': 'orange',
+        'affects': 'gray'
+    }
+    
+    for source, targets in relationships.items():
+        for target, effect in targets:
+            G.add_edge(source, target, effect=effect)
+    
+    # Filter out nodes without edges if requested
+    if filter_isolated_nodes:
+        isolated_nodes = [node for node in G.nodes() if G.degree(node) == 0]
+        G.remove_nodes_from(isolated_nodes)
+        print(f"Removed {len(isolated_nodes)} isolated nodes from the graph.")
+    
+    # Visualize
+    plt.figure(figsize=(15, 10))
+    pos = nx.spring_layout(G)
+    
+    # Draw nodes
+    nx.draw_networkx_nodes(G, pos, node_color='lightblue', node_size=1500)
+    
+    # Draw edges with colors based on effect type
+    edges = G.edges(data=True)
+    edge_colors_list = [edge_colors[edge[2]['effect']] for edge in edges]
+    nx.draw_networkx_edges(G, pos, edge_color=edge_colors_list, arrows=True, arrowsize=20)
+    
+    # Draw labels
+    nx.draw_networkx_labels(G, pos, font_size=8)
+    
+    # Draw edge labels
+    edge_labels = nx.get_edge_attributes(G, 'effect')
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_size=6)
+    
+    # Add legend
+    legend_elements = [plt.Line2D([0], [0], color=color, lw=2, label=category) 
+                      for category, color in edge_colors.items()]
+    plt.legend(handles=legend_elements, title="Effect Types")
+    
+    plt.title("Influence-Based Knowledge Graph")
+    plt.axis('off')
+    plt.show()
+    
+    return G
+
+# Main execution
+def main():
+    print("Please upload your PDF file...")
+    pdf_file = upload_pdf()
+    
+    if pdf_file:
+        print(f"Processing {pdf_file}...")
+        text = extract_text_from_pdf(pdf_file)
+        
+        if text:
+            print("Extracting ontology and building knowledge graph...")
+            entities, relationships = extract_influence_ontology(text)
+            
+            print("\nFound entities:")
+            for entity, label in entities:
+                print(f"- {entity} ({label})")
+                
+            print("\nFound influence relationships:")
+            for source, targets in relationships.items():
+                for target, effect in targets:
+                    print(f"- {source} --[{effect}]--> {target}")
+            
+            # Ask user about filtering isolated nodes
+            filter_choice = input("\nDo you want to filter out nodes without edges? (yes/no): ").strip().lower()
+            filter_isolated = filter_choice == 'yes'
+            
+            print("\nGenerating visualization...")
+            graph = create_knowledge_graph(entities, relationships, filter_isolated_nodes=filter_isolated)
+            
+            # Use the correct NetworkX function to save the graph
+            nx.readwrite.write_gpickle(graph, "knowledge_graph.gpickle")
+            print("Knowledge graph saved as 'knowledge_graph.gpickle'")
+            
+            # Optional: Allow downloading the file in Colab
+            files.download("knowledge_graph.gpickle")
+
+if __name__ == "__main__":
+    main()
