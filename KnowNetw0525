@@ -1,0 +1,115 @@
+# Install required libraries
+!pip install networkx matplotlib
+
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# Create a directed graph
+G = nx.DiGraph()
+
+# Define nodes (key concepts and consequences)
+nodes = [
+    # Main drivers
+    "Climate Change", "Neoliberal Governance", "Disruptive AI",
+    # Climate Change consequences
+    "Drought", "Food/Water Shortages", "Unrest/Migration", "Syrian Uprising",
+    "Forced Migration", "Infectious Diseases", "Vector-Borne Diseases", "Food Poisoning",
+    "Extreme Weather", "Power Outages", "Habitat Changes",
+    # Neoliberal Governance consequences
+    "Fragmented Climate Regime", "Climate Action Failure", "Carbon Markets",
+    "Inequality", "Fossil Fuel Reliance",
+    # Disruptive AI consequences
+    "High Electricity Demand", "Grid Congestion", "Cyberattacks",
+    "Socio-Economic Inequality", "Climate Misinformation", "AI Funding Misallocation",
+    # Interconnected consequences
+    "Geopolitical Tensions", "Weakened Cooperation", "Risky Solutions",
+    "Global South Exclusion", "Economic Disruption"
+]
+
+# Add nodes to the graph
+G.add_nodes_from(nodes)
+
+# Define edges (causal relationships or interactions)
+edges = [
+    # Climate Change pathways
+    ("Climate Change", "Drought"),
+    ("Drought", "Food/Water Shortages"),
+    ("Food/Water Shortages", "Unrest/Migration"),
+    ("Unrest/Migration", "Syrian Uprising"),
+    ("Climate Change", "Forced Migration"),
+    ("Forced Migration", "Infectious Diseases"),
+    ("Climate Change", "Habitat Changes"),
+    ("Habitat Changes", "Vector-Borne Diseases"),
+    ("Climate Change", "Food Poisoning"),
+    ("Climate Change", "Extreme Weather"),
+    ("Extreme Weather", "Power Outages"),
+    
+    # Neoliberal Governance pathways
+    ("Neoliberal Governance", "Fragmented Climate Regime"),
+    ("Fragmented Climate Regime", "Climate Action Failure"),
+    ("Neoliberal Governance", "Carbon Markets"),
+    ("Carbon Markets", "Inequality"),
+    ("Neoliberal Governance", "Fossil Fuel Reliance"),
+    ("Fossil Fuel Reliance", "Climate Change"),
+    
+    # Disruptive AI pathways
+    ("Disruptive AI", "High Electricity Demand"),
+    ("High Electricity Demand", "Grid Congestion"),
+    ("Disruptive AI", "Cyberattacks"),
+    ("Cyberattacks", "Power Outages"),
+    ("Disruptive AI", "Socio-Economic Inequality"),
+    ("Disruptive AI", "Climate Misinformation"),
+    ("Climate Misinformation", "Climate Action Failure"),
+    ("Disruptive AI", "AI Funding Misallocation"),
+    
+    # Interconnected consequences
+    ("Climate Change", "Geopolitical Tensions"),
+    ("Neoliberal Governance", "Geopolitical Tensions"),
+    ("Disruptive AI", "Geopolitical Tensions"),
+    ("Climate Action Failure", "Weakened Cooperation"),
+    ("Geopolitical Tensions", "Weakened Cooperation"),
+    ("Neoliberal Governance", "Risky Solutions"),
+    ("Climate Change", "Risky Solutions"),
+    ("Neoliberal Governance", "Global South Exclusion"),
+    ("Disruptive AI", "Global South Exclusion"),
+    ("Extreme Weather", "Economic Disruption"),
+    ("Socio-Economic Inequality", "Economic Disruption"),
+    ("Geopolitical Tensions", "Economic Disruption")
+]
+
+# Add edges to the graph
+G.add_edges_from(edges)
+
+# Set up the visualization
+plt.figure(figsize=(15, 10))
+
+# Use spring layout for better node separation
+pos = nx.spring_layout(G, k=0.5, iterations=50)
+
+# Define node colors based on categories
+node_colors = []
+for node in G.nodes():
+    if node in ["Climate Change", "Neoliberal Governance", "Disruptive AI"]:
+        node_colors.append("lightcoral")  # Main drivers
+    elif node in ["Drought", "Food/Water Shortages", "Unrest/Migration", "Syrian Uprising",
+                  "Forced Migration", "Infectious Diseases", "Vector-Borne Diseases",
+                  "Food Poisoning", "Extreme Weather", "Power Outages", "Habitat Changes"]:
+        node_colors.append("lightgreen")  # Climate-related consequences
+    elif node in ["Fragmented Climate Regime", "Climate Action Failure", "Carbon Markets",
+                  "Inequality", "Fossil Fuel Reliance"]:
+        node_colors.append("lightblue")  # Neoliberal-related consequences
+    elif node in ["High Electricity Demand", "Grid Congestion", "Cyberattacks",
+                  "Socio-Economic Inequality", "Climate Misinformation", "AI Funding Misallocation"]:
+        node_colors.append("lightyellow")  # AI-related consequences
+    else:
+        node_colors.append("lightgray")  # Interconnected consequences
+
+# Draw the graph
+nx.draw(G, pos, with_labels=True, node_color=node_colors, node_size=2000, font_size=8,
+        font_weight="bold", edge_color="gray", arrows=True)
+
+# Add a title
+plt.title("Knowledge Graph of Cascading Global Crises", fontsize=14, pad=20)
+
+# Show the plot
+plt.show()
